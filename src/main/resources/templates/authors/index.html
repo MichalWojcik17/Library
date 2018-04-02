@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<h1>List of authors</h1>
+
+<p th:if="${message}" id="message"
+   th:text="${message}"/>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Number of books written</th>
+        <th>Show</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="author: ${authors}">
+        <td th:text="${author.name}"/>
+        <td th:text="${author.surname}"/>
+        <td th:text="${author.size}"/>
+        <td><a th:href="@{'/authors/'+${author.id}}"> <img src="icon.jpg"></a></td>
+        <td><a th:href="@{'/authors/'+${author.id}+'/delete'}">  <img src="trash.png"></a></td>
+        <td><a th:href="@{'/authors/'+${author.id}+'/edit'}">  <img src="edit.jpg"> </a></td>
+    </tr>
+    </tbody>
+</table>
+<select id="list">
+
+    <option value=""> </option>
+    <option value="/authors/add">Add authors</option>
+    <option value="/books/add">Add books</option>
+    <option value="/authors">All authors</option>
+    <option value="/books">All books</option>
+</select>
+<script>
+    document.getElementById("list").onchange = function() {
+        if (this.selectedIndex!==0) {
+            window.location.href = this.value;
+        }
+    };
+</script>
+
+
+</body>
+</html>

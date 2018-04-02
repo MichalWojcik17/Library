@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+</head>
+<body>
+<div th:if="${book}">
+    <label>Title:</label>
+    <p th:text="${book.title}"></p>
+    <label>Author:</label>
+    <p th:text="${book.author}"/>
+</div>
+<select id="list">
+
+    <option value=""> </option>
+    <option value="/authors/add">Add authors</option>
+    <option value="/books/add">Add books</option>
+    <option value="/authors">All authors</option>
+    <option value="/books">All books</option>
+</select>
+<script>
+    document.getElementById("list").onchange = function() {
+        if (this.selectedIndex!==0) {
+            window.location.href = this.value;
+        }
+    };
+</script>
+</body>
+</html>

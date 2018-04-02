@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<h1>List of books</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Show</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book: ${books}">
+        <td th:text="${book.title}"/>
+        <td th:text="${book.author}"/>
+        <td><a th:href="@{'/books/'+${book.id}}"> <img src="icon.jpg"></a></td>
+        <td><a th:href="@{'/books/'+${book.id}+'/delete'}">  <img src="trash.png"></a></td>
+        <td><a th:href="@{'/books/'+${book.id}+'/edit'}">  <img src="edit.jpg"> </a></td>
+    </tr>
+    </tbody>
+</table>
+<select id="list">
+
+    <option value=""> </option>
+    <option value="/authors/add">Add authors</option>
+    <option value="/books/add">Add books</option>
+    <option value="/authors">All authors</option>
+    <option value="/books">All books</option>
+</select>
+<script>
+    document.getElementById("list").onchange = function() {
+        if (this.selectedIndex!==0) {
+            window.location.href = this.value;
+        }
+    };
+</script>
+
+</body>
+</html>

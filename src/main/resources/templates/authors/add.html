@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add author</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Add author</h1>
+
+<form th:action="@{/authors}" th:method="post" th:object="${author}">
+    <input type="hidden" th:field="*{id}">
+    <label>Name:</label>
+    <input type="text" th:value="${author.name}"
+           th:field="*{name}">
+    <label>Surname:</label>
+    <input type="text" th:value="${author.surname}"
+           th:field="*{surname}">
+    <input type="submit" th:value="Save">
+</form>
+<select id="list">
+
+    <option value=""> </option>
+    <option value="/authors/add">Add authors</option>
+    <option value="/books/add">Add books</option>
+    <option value="/authors">All authors</option>
+    <option value="/books">All books</option>
+</select>
+<script>
+    document.getElementById("list").onchange = function() {
+        if (this.selectedIndex!==0) {
+            window.location.href = this.value;
+        }
+    };
+</script>
+
+</body>
+</html>
